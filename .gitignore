@@ -1,0 +1,6 @@
+lost_and_found_env/
+__pycache__/
+*.pyc
+.env
+*.egg-info/
+.DS_Store
