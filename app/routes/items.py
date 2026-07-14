@@ -15,10 +15,12 @@ def create_item():
     category = data.get("category")
     status = data.get("status")
     location = data.get("location")
+    if not title or not location:
+        return jsonify ({"error" : "title and location are required"}), 400
     new_item = Item(title=title, description=description, category=category, status=status, location=location, user_id=user_id)
     db.session.add(new_item)
     db.session.commit()
-    return jsonify({"message": "Item added successfully"})
+    return jsonify({"message": "Item added successfully"}), 201
 
 @items_bp.route("/items", methods=["GET"])
 @jwt_required()

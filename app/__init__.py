@@ -1,8 +1,11 @@
 from flask import Flask
 from app.database import db
 import os
+from dotenv import load_dotenv
 
 from flask_jwt_extended import JWTManager
+
+load_dotenv()
 
 def create_app():                                                                                                                
     app = Flask(__name__)                                                                                                        
@@ -10,7 +13,7 @@ def create_app():
         "DATABASE_URL",                                                                                                          
         "postgresql://amanparmar@localhost/lost_found_db"                                                                        
     )
-    app.config["JWT_SECRET_KEY"] = "mysecretkey123"                                                                              
+    app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")                                                                             
     db.init_app(app)
     JWTManager(app)
     from app.routes.auth import auth_bp                                                                                            

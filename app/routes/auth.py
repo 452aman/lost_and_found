@@ -11,6 +11,8 @@ def signup():
     name = data.get("name")
     email = data.get('email')
     password = data.get("password")
+    if not name or not email or not password:
+        return jsonify ({"error" : "name, email, password are required"}), 400
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({"Error" : "User already registered"}), 400
@@ -19,7 +21,7 @@ def signup():
     db.session.add(new_user)
     db.session.commit()
     db.session.refresh(new_user)
-    return {"message" : "Account Created"}
+    return jsonify({"message": "Account Created"}), 201
 
 
 @auth_bp.route("/login", methods=["POST"])
@@ -29,8 +31,8 @@ def login():
     password = data.get("password")
     existing_user = User.query.filter_by(email=email).first()
     if not existing_user:
-        return jsonify({"error": "User not found"}), 400
+        return jsonify({"error": "User not found"}), 401
     if not auth.verify_password(password, existing_user.password):
-        return jsonify({"Error" : "Wrong Password"}), 400
+        return jsonify({"Error" : "Wrong Password"}), 401
     token = auth.create_token({"user_id": existing_user.id})
     return jsonify({"access_token" : token})
