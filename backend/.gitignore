@@ -1,0 +1,6 @@
+lostfound_env/
+__pycache__/
+*.db
+uploads/
+.env
+.pytest_cache/
