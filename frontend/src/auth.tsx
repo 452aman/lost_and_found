@@ -25,7 +25,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const body = new URLSearchParams({ username: email, password })
     const r = await api.post('/auth/login', body)
     tokens.set(r.data.access_token, r.data.refresh_token)
-    await qc.invalidateQueries({ queryKey: ['me'] })
+    const me = await api.get<User>('/auth/me')  // query is disabled until a token exists, so seed it directly
+    qc.setQueryData(['me'], me.data)
   }
   const logout = () => { tokens.clear(); qc.clear(); window.location.href = '/login' }
 
