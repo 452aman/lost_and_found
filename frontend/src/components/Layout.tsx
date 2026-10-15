@@ -55,7 +55,7 @@ function Bell_() {
         {count > 0 && <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white">{count}</span>}
       </button>
       {open && (
-        <div className="card absolute right-0 z-20 mt-2 w-80 overflow-hidden">
+        <div className="card absolute right-0 z-20 mt-2 w-80 overflow-hidden bg-[#0b1020]">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-2">
             <span className="text-sm font-semibold">Notifications</span>
             <button className="text-xs text-brand-600 hover:underline" onClick={readAll}>Mark all read</button>
@@ -74,7 +74,7 @@ function Bell_() {
           </ul>
         </div>
       )}
-      {toast && <div className="fixed bottom-6 right-6 z-50 max-w-sm rounded-xl bg-black/50 px-4 py-3 text-sm text-white shadow-lg">{toast}</div>}
+      {toast && <div className="fixed bottom-6 right-6 z-50 max-w-sm rounded-xl border border-white/15 bg-[#0b1020] px-4 py-3 text-sm text-white shadow-lg">{toast}</div>}
     </div>
   )
 }
