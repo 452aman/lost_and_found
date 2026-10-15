@@ -28,22 +28,22 @@ export default function Browse() {
   return (
     <div className="space-y-5">
       <div className="card grid gap-3 p-4 sm:grid-cols-2 lg:grid-cols-6">
-        <div className="relative lg:col-span-2"><Search size={16} className="absolute left-3 top-2.5 text-slate-400" />
+        <div className="relative lg:col-span-2"><Search size={16} className="absolute left-3 top-2.5 text-slate-500" />
           <input className="input pl-9" placeholder="Search title or description…" value={f.q} onChange={set('q')} /></div>
         <select className="input" value={f.kind} onChange={set('kind')}><option value="">Lost &amp; found</option><option value="lost">Lost</option><option value="found">Found</option></select>
         <select className="input" value={f.category} onChange={set('category')}><option value="">All categories</option>{cats.map((c) => <option key={c}>{c}</option>)}</select>
         <input className="input" placeholder="Location" value={f.location} onChange={set('location')} />
         <select className="input" value={f.status} onChange={set('status')}><option value="open">Open</option><option value="claimed">Claimed</option><option value="returned">Returned</option><option value="">Any status</option></select>
       </div>
-      <div className="flex items-center justify-between text-sm text-slate-500">
+      <div className="flex items-center justify-between text-sm text-slate-400">
         <span>{data?.total ?? 0} results {isFetching && '· updating…'}</span>
         <select className="input w-auto" value={f.sort} onChange={set('sort')}><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{data?.items.map((i) => <ItemCard key={i.id} item={i} />)}</div>
-      {data && data.total === 0 && <p className="py-16 text-center text-slate-500">Nothing matches those filters.</p>}
+      {data && data.total === 0 && <p className="py-16 text-center text-slate-400">Nothing matches those filters.</p>}
       <div className="flex items-center justify-center gap-3">
         <button className="btn-ghost" disabled={page <= 1} onClick={() => setPage(page - 1)}>Previous</button>
-        <span className="text-sm text-slate-500">Page {page} of {pages}</span>
+        <span className="text-sm text-slate-400">Page {page} of {pages}</span>
         <button className="btn-ghost" disabled={page >= pages} onClick={() => setPage(page + 1)}>Next</button>
       </div>
     </div>

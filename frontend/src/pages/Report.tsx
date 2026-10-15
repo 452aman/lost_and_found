@@ -32,9 +32,9 @@ export default function Report() {
   return (
     <form onSubmit={submit} className="card mx-auto max-w-2xl space-y-5 p-6">
       <h1 className="text-xl font-bold">Report an item</h1>
-      <div className="grid grid-cols-2 gap-2 rounded-lg bg-slate-100 p-1">
+      <div className="grid grid-cols-2 gap-2 rounded-lg bg-white/[0.07] p-1">
         {(['lost', 'found'] as const).map((k) => (
-          <button type="button" key={k} onClick={() => setKind(k)} className={`rounded-md py-2 text-sm font-medium ${kind === k ? 'bg-white shadow-sm' : 'text-slate-500'}`}>
+          <button type="button" key={k} onClick={() => setKind(k)} className={`rounded-md py-2 text-sm font-medium ${kind === k ? 'bg-white/[0.04] shadow-sm' : 'text-slate-400'}`}>
             {k === 'lost' ? 'I lost something' : 'I found something'}
           </button>
         ))}
@@ -47,21 +47,21 @@ export default function Report() {
       </div>
       <div><label className="label">When was it {kind === 'lost' ? 'lost' : 'found'}?</label><input type="datetime-local" className="input" required value={form.event_time} onChange={set('event_time')} /></div>
       {kind === 'found' && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4">
-          <label className="label text-amber-800">Secret verification detail</label>
+        <div className="rounded-lg border border-amber-400/30 bg-amber-400/10 p-4">
+          <label className="label text-amber-200">Secret verification detail</label>
           <input className="input" required value={form.secret_detail} onChange={set('secret_detail')} placeholder="Something only the real owner would know, e.g. a scratch, wallpaper, sticker" />
-          <p className="mt-1 text-xs text-amber-700">Hidden from everyone but you. Claimants must describe it, and we score how well they match.</p>
+          <p className="mt-1 text-xs text-amber-300">Hidden from everyone but you. Claimants must describe it, and we score how well they match.</p>
         </div>
       )}
       <div>
         <label className="label">Photo (optional)</label>
-        <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-slate-300 p-4 text-sm text-slate-500 hover:bg-slate-50">
+        <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-white/15 p-4 text-sm text-slate-400 hover:bg-white/[0.07]">
           <ImagePlus size={20} />{image ? image.name : 'Choose JPEG, PNG or WEBP (max 5MB)'}
           <input type="file" accept="image/jpeg,image/png,image/webp" hidden onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
         </label>
         {image && <img src={URL.createObjectURL(image)} alt="preview" className="mt-3 h-40 rounded-lg object-cover" />}
       </div>
-      {error && <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p>}
+      {error && <p className="rounded-lg bg-rose-400/10 px-3 py-2 text-sm text-rose-300">{error}</p>}
       <button className="btn w-full" disabled={busy}>{busy ? 'Submitting…' : 'Submit report'}</button>
     </form>
   )

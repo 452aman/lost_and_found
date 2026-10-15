@@ -12,7 +12,7 @@ import Report from './pages/Report'
 
 function Protected({ admin = false }: { admin?: boolean }) {
   const { user, loading } = useAuth()
-  if (loading) return <p className="p-8 text-slate-500">Loading…</p>
+  if (loading) return <p className="p-8 text-slate-400">Loading…</p>
   if (!user) return <Navigate to="/login" replace />
   if (admin && user.role !== 'admin') return <Navigate to="/" replace />
   return <Layout />
