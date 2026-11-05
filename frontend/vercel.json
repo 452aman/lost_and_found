@@ -1,7 +1,7 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://lostfound-api.onrender.com/api/:path*" },
-    { "source": "/uploads/:path*", "destination": "https://lostfound-api.onrender.com/uploads/:path*" },
+    { "source": "/api/:path*", "destination": "https://lostfound-api-o06h.onrender.com/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://lostfound-api-o06h.onrender.com/uploads/:path*" },
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ]
 }
