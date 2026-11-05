@@ -25,7 +25,7 @@ function Bell_() {
     let stopped = false
     const connect = () => {
       const proto = location.protocol === 'https:' ? 'wss' : 'ws'
-      ws = new WebSocket(`${proto}://${location.host}/api/v1/ws/notifications?token=${tokens.access}`)
+      ws = new WebSocket(`${proto}://${import.meta.env.VITE_WS_HOST ?? location.host}/api/v1/ws/notifications?token=${tokens.access}`)
       ws.onmessage = (e) => {
         setToast(JSON.parse(e.data).message)
         setTimeout(() => setToast(null), 4000)

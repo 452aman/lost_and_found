@@ -31,6 +31,7 @@ export default function Auth({ mode }: { mode: 'login' | 'register' }) {
         {mode === 'register' && <div><label className="label">Name</label><input className="input" required minLength={2} value={form.name} onChange={set('name')} /></div>}
         <div><label className="label">Email</label><input className="input" type="email" required value={form.email} onChange={set('email')} /></div>
         <div><label className="label">Password</label><input className="input" type="password" required minLength={mode === 'register' ? 8 : 1} value={form.password} onChange={set('password')} /></div>
+        {mode === 'login' && <p className="rounded-lg bg-white/[0.04] p-2 text-center text-xs text-slate-400">Demo: riya@lostfound.dev / password123</p>}
         {error && <p className="rounded-lg bg-rose-400/10 px-3 py-2 text-sm text-rose-300">{error}</p>}
         <button className="btn w-full" disabled={busy}>{busy ? 'Please wait…' : mode === 'login' ? 'Sign in' : 'Create account'}</button>
         <p className="text-center text-sm text-slate-400">

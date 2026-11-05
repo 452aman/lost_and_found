@@ -1,4 +1,5 @@
 """Populate a dev database with demo users and items:  python seed.py"""
+import os
 from datetime import datetime, timedelta, timezone
 
 from app.core.security import hash_password
@@ -12,7 +13,7 @@ now = datetime.now(timezone.utc)
 with SessionLocal() as db:
     if db.query(User).count():
         raise SystemExit("Database already has data; delete lostfound.db to reseed.")
-    admin = User(email="admin@lostfound.dev", name="Admin", role=Role.admin, hashed_password=hash_password("admin12345"))
+    admin = User(email="admin@lostfound.dev", name="Admin", role=Role.admin, hashed_password=hash_password(os.getenv("DEMO_ADMIN_PASSWORD", "admin12345")))
     riya = User(email="riya@lostfound.dev", name="Riya Sharma", hashed_password=hash_password("password123"))
     arjun = User(email="arjun@lostfound.dev", name="Arjun Mehta", hashed_password=hash_password("password123"))
     db.add_all([admin, riya, arjun])
